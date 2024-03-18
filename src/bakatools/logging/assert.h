@@ -5,7 +5,7 @@ This file contains the assert macros. CORE macros musn't be used by the applicat
 */
 
 #include "log.h"
-#include <bakara/tools/string_tools.h>
+#include <bakatools/string/format.h>
 
 #define BK_STRINGIFY(x) #x
 

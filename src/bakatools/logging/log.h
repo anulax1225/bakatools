@@ -7,7 +7,6 @@
 #include <spdlog/sinks/basic_file_sink.h>
 
 namespace Bk {
-
 	class Log
 	{
         public:
