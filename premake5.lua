@@ -23,13 +23,13 @@ project "bakatools"
     filter "system:windows"
         defines
         {
-            "BK_PLAFORM_WINDOWS"
+            "BK_PLATFORM_WINDOWS"
         }
     
     filter "system:linux"
         defines
         {
-            "BK_PLAFORM_LINUX"
+            "BK_PLATFORM_LINUX"
         }
     
     filter "configurations:Debug"
