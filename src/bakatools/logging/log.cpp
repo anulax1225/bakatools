@@ -5,7 +5,7 @@ namespace Bk {
 	std::shared_ptr<spdlog::logger> Log::p_core_logger;
 	std::shared_ptr<spdlog::logger> Log::p_app_logger;
 
-	void Log::init()
+	void Log::init(std::string core)
 	{
 		std::vector<spdlog::sink_ptr> log_sinks;
 		log_sinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
@@ -14,7 +14,7 @@ namespace Bk {
 		log_sinks[0]->set_pattern("%^[%T] %n: %v%$");
 		log_sinks[1]->set_pattern("[%T] [%l] %n: %v");
 
-		p_core_logger = std::make_shared<spdlog::logger>("BAKARA", begin(log_sinks), end(log_sinks));
+		p_core_logger = std::make_shared<spdlog::logger>(core, begin(log_sinks), end(log_sinks));
 		spdlog::register_logger(p_core_logger);
 		p_core_logger->set_level(spdlog::level::trace);
 		p_core_logger->flush_on(spdlog::level::trace);

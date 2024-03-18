@@ -3,6 +3,7 @@ project "bakatools"
     language "C++"
     cppdialect "C++17"
     systemversion "latest"
+    staticruntime "on"
 
     targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -40,7 +41,6 @@ project "bakatools"
         }
         runtime "Debug"
         symbols "on"
-
 
     filter "configurations:Release"
         defines 
