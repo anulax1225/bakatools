@@ -9,8 +9,8 @@ project "bakatools"
 
     includedirs 
     {
-        "%{prj.location}/vendor/spdlog/include",
-        "%{prj.location}/src/"
+        "%{IncludeDirs.spdlog}",
+        "%{IncludeDirs.bakatools}"
     }
 
     files 
