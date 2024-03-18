@@ -11,3 +11,4 @@
 #include <ostream>
 #include <utility>
 #include <type_traits>
+#include <memory>
