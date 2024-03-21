@@ -8,7 +8,7 @@ namespace Bk::Tools {
         size_t pos = 0;
         while (((pos = s.find(delimiter)) != std::string::npos) && cpt-- != 0) 
         {
-            std::string sub_s = s.substr(0, pos)
+            std::string sub_s = s.substr(0, pos);
             if (sub_s.length()) splits->push_back(sub_s);
             s.erase(0, pos + delimiter.length());
         }
