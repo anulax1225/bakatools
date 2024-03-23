@@ -10,7 +10,7 @@ namespace Bk {
 	class Log
 	{
         public:
-            static void init(std::string core);
+            static void init(std::string core, bool file_log = false);
 
             static std::shared_ptr<spdlog::logger>& get_core_logger() { return p_core_logger; }
             static std::shared_ptr<spdlog::logger>& get_app_logger() { return p_app_logger; }
