@@ -1,15 +1,16 @@
 #pragma once
 
-#include <bakatools.h>
-#include <bakatools/time/time.h>
-namespace Bk::Tools {
+#include <spch.h>
+#include <time/time.h>
+
+namespace Bk {
     template<typename P>
     class TaskTimer 
     {
         public:
             TaskTimer(TimeSpan<P> ts)
             : ts(ts) {}
-            ~TaskTimer() { if (running) stop(); }
+            ~TaskTimer() { stop(); }
 
             void start(std::unique_ptr<std::function<void()>> action)
             {
@@ -28,6 +29,7 @@ namespace Bk::Tools {
 
             void stop()
             {
+                if (!running) return;
                 running = false;
                 worker.join();
             }
