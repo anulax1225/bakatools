@@ -12,5 +12,6 @@
 #include <utility>
 #include <type_traits>
 #include <memory>
+#include <fstream>
 #include <filesystem>
 #include <chrono>
