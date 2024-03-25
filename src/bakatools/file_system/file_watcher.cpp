@@ -10,7 +10,7 @@ namespace Bk::Tools {
 
     FileWatcher::~FileWatcher() { stop(); }
 
-    void FileWatcher::start(const std::function<void (std::string, FileStatus)>& action)
+    void FileWatcher::start(const std::function<void (std::string, FileStat)>& action)
     {
         std::function<void()> task([&]()
         {
@@ -19,7 +19,7 @@ namespace Bk::Tools {
             {
                 if (!std::filesystem::exists(it->first)) 
                 {
-                    action(it->first, FileStatus::Deleted);
+                    action(it->first, FileStat::Deleted);
                     it = paths.erase(it);
                 }
                 else it++;
@@ -31,12 +31,12 @@ namespace Bk::Tools {
                 {
                     if(paths[file.path().string()] != current_file_last_write_time) {
                         paths[file.path().string()] = current_file_last_write_time;
-                        action(file.path().string(), FileStatus::Modified);
+                        action(file.path().string(), FileStat::Modified);
                     }
                 } else 
                 {
                     paths[file.path().string()] = current_file_last_write_time;
-                    action(file.path().string(), FileStatus::Created);
+                    action(file.path().string(), FileStat::Created);
                 }
             }
         });

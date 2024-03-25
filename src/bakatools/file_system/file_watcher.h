@@ -1,9 +1,10 @@
 #pragma once
 
-#include <bakatools.h>
-#include <bakatools/thread/task_timer.h>
+#include <bakatoolspch.h>
+#include <thread/task_timer.h>
+
 namespace Bk::Tools {
-    enum class FileStatus
+    enum class FileStat
     {
         Created = 0,
         Modified = 1,
@@ -16,7 +17,7 @@ namespace Bk::Tools {
             FileWatcher(std::string path, TimeSpan<Millisecond> ts);
             ~FileWatcher();
 
-            void start(const std::function<void (std::string, FileStatus)>& action);
+            void start(const std::function<void (std::string, FileStat)>& action);
             void stop();
             bool contains(std::string path);
 
