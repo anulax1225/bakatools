@@ -1,5 +1,7 @@
 #pragma once
 
+#include <bakatoolspch.h>
+
 namespace Bk::Net {
 	class DataStream 
 	{
