@@ -11,11 +11,6 @@ namespace Bk {
     using Hour = std::ratio<3600, 1>;
     using Day = std::ratio<84600, 1>;
 
-    using SysClock = std::chrono::system_clock;
-    using SteadyClock = std::chrono::steady_clock;
-    using FileClock = std::chrono::file_clock;
-    using UtcClock = std::chrono::utc_clock;
-
     template<typename P>
     struct TimeSpan 
     {

@@ -4,6 +4,11 @@
 #include "time_span.h"
 
 namespace Bk {
+    using SysClock = std::chrono::system_clock;
+    using SteadyClock = std::chrono::steady_clock;
+    using FileClock = std::chrono::file_clock;
+    using UtcClock = std::chrono::utc_clock;
+    
     template<typename C, typename P>
     struct TimePoint
     {

@@ -2,7 +2,7 @@
 
 #include <bakatoolspch.h>
 
-namespace Bk::Net {
+namespace Bk {
 	class DataStream 
 	{
 	public:
