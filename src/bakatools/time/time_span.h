@@ -2,7 +2,8 @@
 
 #include <bakatoolspch.h>
 
-namespace Bk {
+namespace Bk 
+{
     using Nanosecond = std::ratio<1,1000000000>;
     using Microsecond = std::ratio<1,1000000>;
     using Millisecond = std::ratio<1,1000>;

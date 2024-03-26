@@ -3,7 +3,8 @@
 #include <bakatoolspch.h>
 #include "time_span.h"
 
-namespace Bk {
+namespace Bk 
+{
     using SysClock = std::chrono::system_clock;
     using SteadyClock = std::chrono::steady_clock;
     using FileClock = std::chrono::file_clock;
