@@ -1,4 +1,4 @@
 #pragma once
 
-#include <time/time_span.h>
-#include <time/time_point.h>
+#include <bakatools/time/time_span.h>
+#include <bakatools/time/time_point.h>
