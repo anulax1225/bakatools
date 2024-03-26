@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bakatoolspch.h>
+#include <bakatools/container/data_stream.h>
 #include "dir_entry.h"
 
 namespace Bk::Tools {
@@ -18,6 +19,9 @@ namespace Bk::Tools {
 
             int remove() override;
             void copy(std::string path, CopyOption opt = CopyOption::overwrite_existing) override;
+
+            DataStream read(int size = size());
+            bool write(DataStream stream);
 
             BK_DIR_ENTRY_TYPE(regular)
     };

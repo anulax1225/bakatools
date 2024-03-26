@@ -10,4 +10,27 @@ namespace Bk::Tools {
     {
         if (exists()) std::filesystem::copy_file(ent.path(), path, opt);
     }
+
+    DataStream File::read(int size)
+    {
+        std::vector<char> data;
+        if(exists())
+        {
+            std::ifstream ifrm(ent.path(), std::ios::binary);
+            data.resize(size);
+            ifrm.read(data.data(), data.size());
+            return DataStream(data);
+        }
+    }
+
+    bool File::write(DataStream stream)
+    {
+        try 
+        {
+            std::ofstream ofrm(ent.path(), std::ios::binary);
+            ofrm.write(stream.payload.data(), stream.payload.size());
+            return true;
+        } catch return false;
+
+    }
 }
