@@ -1,6 +1,6 @@
 #pragma once
 
-#include <spch.h>
+#include <bakatoolspch.h>
 #include <bakatools/time/time_span.h>
 #include <bakatools/time/time_point.h>
 
