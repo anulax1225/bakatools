@@ -3,7 +3,7 @@
 namespace Bk {
     std::string DirEntry::path()
     {
-        return ent.path().string();
+        return this->ent.path().string();
     }
 
     std::string DirEntry::absolute_path()
