@@ -1,6 +1,6 @@
 #include "directory.h"
 
-namespace Bk::Tools {
+namespace Bk {
     std::string Directory::current()
     {
         return std::filesystem::current_path();

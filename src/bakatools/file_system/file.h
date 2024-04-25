@@ -4,7 +4,7 @@
 #include <bakatools/container/data_stream.h>
 #include "dir_entry.h"
 
-namespace Bk::Tools {
+namespace Bk {
     class File : public DirEntry
     {
         public:

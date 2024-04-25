@@ -1,6 +1,6 @@
 #include "file.h"
 
-namespace Bk::Tools {
+namespace Bk {
     int File::remove()
     {
         return std::filesystem::remove(ent.path());

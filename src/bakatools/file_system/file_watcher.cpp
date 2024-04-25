@@ -1,6 +1,6 @@
 #include "file_watcher.h"
 
-namespace Bk::Tools {
+namespace Bk {
     FileWatcher::FileWatcher(std::string path, TimeSpan<Millisecond> ts)
     : target(path), ttm(ts)
     {

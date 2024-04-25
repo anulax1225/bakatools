@@ -3,7 +3,7 @@
 #include <bakatoolspch.h>
 #include <bakatools/thread/task_timer.h>
 
-namespace Bk::Tools {
+namespace Bk {
     enum class FileStat
     {
         Created = 0,

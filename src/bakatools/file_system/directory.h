@@ -3,7 +3,7 @@
 #include <bakatoolspch.h>
 #include "dir_entry.h"
 
-namespace Bk::Tools {
+namespace Bk {
     class Directory : public DirEntry
     {
         public:
