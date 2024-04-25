@@ -27,9 +27,9 @@ namespace Bk
         return ent.file_size();
     }
 
-    Bk::TimePoint<Bk::FileClock, Bk::Second> DirEntry::last_write()
+    TimePoint<FileClock, Second> DirEntry::last_write()
     {
-        return Bk::TimePoint<Bk::FileClock, Bk::Second>(ent.last_write_time());
+        return TimePoint<FileClock, Second>(ent.last_write_time());
     }
 
     bool DirEntry::exists()

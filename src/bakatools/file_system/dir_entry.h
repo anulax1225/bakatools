@@ -34,7 +34,7 @@ namespace Bk
             std::string name();
 
             uintmax_t size();
-            Bk::TimePoint<Bk::FileClock, Bk::Second> last_write();
+            TimePoint<FileClock, Second> last_write();
             bool exists();
             FilePerms perms();
             uintmax_t hard_links();

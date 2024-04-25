@@ -7,8 +7,6 @@ This file contains the assert macros. CORE macros musn't be used by the applicat
 #include "log.h"
 #include <bakatools/string/format.h>
 
-#define BK_STRINGIFY(x) #x
-
 #ifdef BK_DEBUG
     #if defined(BK_PLATFORM_WINDOWS)
         #define BK_DEBUGBREAK() __debugbreak()

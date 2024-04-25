@@ -15,3 +15,5 @@
 #include <fstream>
 #include <filesystem>
 #include <chrono>
+
+#include <bakatools/base.h>
