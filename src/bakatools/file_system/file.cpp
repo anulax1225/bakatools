@@ -21,6 +21,7 @@ namespace Bk::Tools {
             ifrm.read(data.data(), data.size());
             return DataStream(data);
         }
+        return DataStream();
     }
 
     bool File::write(DataStream stream)
@@ -30,6 +31,6 @@ namespace Bk::Tools {
             std::ofstream ofrm(ent.path(), std::ios::binary);
             ofrm.write(stream.payload.data(), stream.payload.size());
             return true;
-        } catch { return false; }
+        } catch() { return false; }
     }
 }
