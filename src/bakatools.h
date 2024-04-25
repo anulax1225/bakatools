@@ -1,5 +1,12 @@
 #pragma once
 
+#ifdef BKMOD_ALL
+    #define BKMOD_BASE
+    #define BKMOD_STRING
+    #define BKMOD_CONTAINER
+    #define BKMOD_THREAD
+    #define BKMOD_FILESYSTEM
+#endif
 #ifdef BKMOD_BASE
     #include <bakatools/logging/log.h> 
     #include <bakatools/logging/assert.h>
