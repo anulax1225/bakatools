@@ -16,7 +16,7 @@ namespace Bk::Tools {
         std::vector<char> data;
         if(exists())
         {
-            std::ifstream ifrm(ent.path(), std::ios::binary);
+            std::ifstream ifrm(path(), std::ios::binary);
             data.resize(size);
             ifrm.read(data.data(), data.size());
             return DataStream(data);
@@ -30,7 +30,6 @@ namespace Bk::Tools {
             std::ofstream ofrm(ent.path(), std::ios::binary);
             ofrm.write(stream.payload.data(), stream.payload.size());
             return true;
-        } catch return false;
-
+        } catch { return false; }
     }
 }
