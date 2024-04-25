@@ -11,7 +11,7 @@ namespace Bk {
         if (exists()) std::filesystem::copy_file(ent.path(), path, opt);
     }
 
-    DataStream File::read(int size)
+    Type::DataStream File::read(int size)
     {
         std::vector<char> data;
         if(exists())
@@ -19,12 +19,12 @@ namespace Bk {
             std::ifstream ifrm(path(), std::ios::binary);
             data.resize(size);
             ifrm.read(data.data(), data.size());
-            return DataStream(data);
+            return Type::DataStream(data);
         }
-        return DataStream();
+        return Type::DataStream();
     }
 
-    bool File::write(DataStream stream)
+    bool File::write(Type::DataStream stream)
     {
         std::ofstream ofrm(ent.path(), std::ios::binary);
         if (!ofrm) return false;

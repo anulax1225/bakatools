@@ -20,8 +20,8 @@ namespace Bk {
             int remove() override;
             void copy(std::string path, CopyOption opt = CopyOption::overwrite_existing) override;
 
-            DataStream read(int size);
-            bool write(DataStream stream);
+            Type::DataStream read(int size);
+            bool write(Type::DataStream stream);
 
             BK_DIR_ENTRY_TYPE(regular)
     };
