@@ -39,8 +39,9 @@ namespace Bk {
                 return entries;
             }
 
-            static std::string current();
-
+            DirEntry find(std::string path);
             BK_DIR_ENTRY_TYPE(directory)
+
+            static std::string current();
     };
 }
