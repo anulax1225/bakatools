@@ -1,7 +1,7 @@
 #pragma once 
 
 #include <bakatoolspch.h>
-namespace Bk::DataType {
+namespace Bk::Type {
     template <typename K, typename V>
     struct Trie
     {
