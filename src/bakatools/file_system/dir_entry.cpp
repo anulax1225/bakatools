@@ -1,6 +1,7 @@
 #include "dir_entry.h"
 
-namespace Bk {
+namespace Bk 
+{
     std::string DirEntry::path()
     {
         return this->ent.path().string();
@@ -26,9 +27,9 @@ namespace Bk {
         return ent.file_size();
     }
 
-    TimePoint<Bk::FileClock, Bk::Second> DirEntry::last_write()
+    Bk::TimePoint<Bk::FileClock, Bk::Second> DirEntry::last_write()
     {
-        return TimePoint<Bk::FileClock, Bk::Second>(ent.last_write_time());
+        return Bk::TimePoint<Bk::FileClock, Bk::Second>(ent.last_write_time());
     }
 
     bool DirEntry::exists()

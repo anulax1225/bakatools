@@ -6,7 +6,8 @@
 
 #define BK_DIR_ENTRY_TYPE(type) const char* type_name() override { return BK_STRINGIFY(type); }\
                                 static FileType get_type() { return FileType::type; }\
-namespace Bk {
+namespace Bk 
+{
     using FileType = std::filesystem::file_type;
     using FilePerms = std::filesystem::perms;
     using FileStatus = std::filesystem::file_status;
@@ -32,7 +33,7 @@ namespace Bk {
             std::string name();
 
             uintmax_t size();
-            TimePoint<Bk::FileClock, Bk::Second> last_write();
+            Bk::TimePoint<Bk::FileClock, Bk::Second> last_write();
             bool exists();
             FilePerms perms();
             uintmax_t hard_links();
