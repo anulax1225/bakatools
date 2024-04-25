@@ -31,6 +31,7 @@ namespace Bk::Tools {
             std::ofstream ofrm(ent.path(), std::ios::binary);
             ofrm.write(stream.payload.data(), stream.payload.size());
             return true;
-        } catch() { return false; }
+        } 
+        catch { return false; }
     }
 }
