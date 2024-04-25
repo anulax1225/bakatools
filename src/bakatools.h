@@ -24,5 +24,6 @@
     #define BKMOD_TIME
 #endif
 #ifdef BKMOD_TIME
-    #include <bakatools/time/time.h>
+    #include <bakatools/time/time_span.h>
+    #include <bakatools/time/time_point.h>
 #endif

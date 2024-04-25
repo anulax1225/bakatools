@@ -1,7 +1,8 @@
 #pragma once
 
 #include <spch.h>
-#include <bakatools/time/time.h>
+#include <bakatools/time/time_span.h>
+#include <bakatools/time/time_point.h>
 
 namespace Bk {
     template<typename P>
