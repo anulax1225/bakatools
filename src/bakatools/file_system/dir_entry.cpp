@@ -57,12 +57,12 @@ namespace Bk
         return ent.hard_link_count();
     }
 
-    bool DirEntry::move(std::string name)
+    bool DirEntry::move(std::string path)
     {
-        std::filesystem::directory_entry new_path(ent.path().parent_path()/name);
+        std::filesystem::directory_entry new_path(path);
         if (exists() && new_path.exists()) 
         {
-            std::filesystem::rename(ent.path(), new_path.path()/name());
+            std::filesystem::rename(ent.path(), new_path.path());
             ent = std::filesystem::directory_entry(new_path.path());
             return true;
         }
