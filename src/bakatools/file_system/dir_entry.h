@@ -4,10 +4,11 @@
 #include <bakatools/time/time_span.h>
 #include <bakatools/time/time_point.h>
 
-#define BK_DIR_ENTRY_TYPE(type) const char* type_name() override { return BK_STRINGIFY(type); }\
-                                static FileType get_type() { return FileType::type; }\
 namespace Bk 
 {
+    #define BK_DIR_ENTRY_TYPE(type) const char* type_name() override { return BK_STRINGIFY(type); }\
+                                    static FileType get_type() { return FileType::type; }
+
     using FileType = std::filesystem::file_type;
     using FilePerms = std::filesystem::perms;
     using FileStatus = std::filesystem::file_status;
