@@ -26,12 +26,9 @@ namespace Bk::Tools {
 
     bool File::write(DataStream stream)
     {
-        try 
-        {
-            std::ofstream ofrm(ent.path(), std::ios::binary);
-            ofrm.write(stream.payload.data(), stream.payload.size());
-            return true;
-        } 
-        catch { return false; }
+        std::ofstream ofrm(ent.path(), std::ios::binary);
+        if (!ofrm) return false;
+        ofrm.write(stream.payload.data(), stream.payload.size());
+        return true;
     }
 }
