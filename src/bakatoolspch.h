@@ -14,6 +14,7 @@
 #include <memory>
 #include <fstream>
 #include <filesystem>
+#include <functional>
 #include <chrono>
 
 #include <bakatools/base.h>
