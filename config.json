@@ -1,0 +1,12 @@
+{
+    "name": "Bakatools",
+    "owner": "Anulax",
+    "git": "https://github.com/anulax1225/bakatools",
+    "packages": 
+    [
+        {
+            "author": "gabime",
+            "pkg": "spdlog"
+        }
+    ]
+}
