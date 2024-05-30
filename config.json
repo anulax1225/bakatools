@@ -6,7 +6,7 @@
     [
         {
             "author": "gabime",
-            "pkg": "spdlog"
+            "name": "spdlog"
         }
     ]
 }
