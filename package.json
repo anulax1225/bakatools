@@ -8,8 +8,8 @@
     ],
     "includes": 
     [
-        "IncludeDirs.bakatools",
-        "IncludeDirs.spdlog"
+        "bakatools",
+        "spdlog"
     ],
     "packages": 
     [
