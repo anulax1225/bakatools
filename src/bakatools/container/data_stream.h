@@ -12,6 +12,8 @@ namespace Bk::Type {
 
 		int size() { return payload.size(); }
 
+		void reverse() { std::reverse(payload.begin(), payload.end()); }
+
 		template <typename T>
 		void push(const T& data)
 		{
