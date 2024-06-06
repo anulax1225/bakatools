@@ -39,6 +39,8 @@ namespace Bk::Json
             void set_null();
             bool is_null();
 
+            std::string to_string(int indent  = 3);
+
         private:
             union Values {
                 Object* object;
