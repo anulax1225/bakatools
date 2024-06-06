@@ -1,5 +1,5 @@
-# Bakatools
-## Modules
+# Baka tools module
+## Tools
 * Time 
 * File System
 * Thread
