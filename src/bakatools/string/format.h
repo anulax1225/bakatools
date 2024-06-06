@@ -28,9 +28,6 @@ namespace Bk::Tools {
                         if (!std::is_floating_point<Arg>()) throw std::invalid_argument("%f introduces floating point argument");
                         break;
                     case 'b' :
-                        if(arg) ss << "true";
-                        else ss << "false";
-                        return format_impl(ss, ++format, args...);
                     case 's' :
                         break;
                     // etc.

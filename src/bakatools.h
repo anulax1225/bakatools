@@ -2,6 +2,7 @@
 
 #ifdef BKMOD_ALL
     #define BKMOD_BASE
+    #define BKMOD_JSON
     #define BKMOD_STRING
     #define BKMOD_CONTAINER
     #define BKMOD_THREAD
@@ -10,6 +11,11 @@
 #ifdef BKMOD_BASE
     #include <bakatools/logging/log.h> 
     #include <bakatools/logging/assert.h>
+#endif
+#ifdef BKMOD_JSON
+    #include <bakatools/json/json_parser.h>
+    #include <bakatools/json/json_lexer.h>
+    #include <bakatools/json/json_node.h>
 #endif
 #ifdef BKMOD_STRING
     #include <bakatools/string/string_tools.h>
