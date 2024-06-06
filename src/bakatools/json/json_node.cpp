@@ -2,63 +2,64 @@
 namespace Bk::Json 
 {
     std::string Node::to_string(int indent) {
-        std::string spaceString = std::string(indent, ' ');
-        std::string outputString = "";
+        std::string space_string = std::string(indent, ' ');
+        std::string output_string = "";
         switch (type) {
             case Type::STRING: 
             {
-                outputString += spaceString + *values.s;
-                break;
+                output_string += '"' + *values.s + '"';        
+                return output_string;
             }
             case Type::NUMBER: 
             {
-                outputString += spaceString + std::to_string(values.fValue);
-                break;
+                output_string += std::to_string(values.fValue);
+                return output_string;
             }
             case Type::BOOLEAN: 
             {
-                outputString += spaceString + (values.bValue ? "true" : "false");
-                break;
+                output_string += (values.bValue ? "true" : "false");
+                return output_string;
             }
             case Type::NULL_TYPE: 
             {
-                outputString += spaceString + "null";
-                break;
+                output_string += "null";
+                return output_string;
             }
             case Type::LIST: 
             {
-                // std::cout << "[";
-                outputString += spaceString + "[\n";
-                int index = 0;
-                for (auto node : (*values.list)) {
-                    outputString += node->toString(indent + 1);
-                    if (index < (*values.list).size() - 1) {
-                    outputString += ",\n";
+                output_string += "\n" + space_string + "[\n";;
+                for (int i = 0; i < (*values.list).size() - 1; i++) 
+                {
+                    output_string += get_list()[i]->to_string(indent + 4);
+                    if (i < (*values.list).size() - 2) 
+                    {
+                        output_string += ",\n";
+                    } else {
+                        break;
                     }
-                    index++;
                 }
-                outputString += "\n"  + spaceString + "]\n";
-                break;
+                output_string += "\n"  + space_string + "]";
+                return output_string;
             }
             case Type::OBJECT: 
             {
-                outputString += spaceString + "{\n";
-                for (JSONObject::iterator i = (*values.object).begin(); i != (*values.object).end(); i++) 
+                output_string += space_string + "{\n";
+                for (Object::iterator i = (*values.object).begin(); i != (*values.object).end(); i++) 
                 {
-                    outputString += spaceString + " " + "\"" + i->first + "\"" + ": ";
-                    outputString += i->second->toString(indent + 1);
-                    JSONObject::iterator next = i;
+                    output_string += space_string + "    " + "\"" + i->first + "\"" + ": ";
+                    output_string += i->second->to_string(indent + 4);
+                    Object::iterator next = i;
                     next++;
                     if ((next) != (*values.object).end()) 
                     {
-                        outputString += ",\n";
+                        output_string += ",\n";
                     }
-                    outputString += spaceString + "\n";
                 }
-                outputString += spaceString + "}";
+                output_string += "\n" + space_string + "}";
+                return output_string;
             }
         }
-        return outputString;
+        return "";
     }
     void Node::set_object(Object *object) 
     {

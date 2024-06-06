@@ -4,7 +4,6 @@
 #include <bakatools/file_system/file.h>
 #include <bakatools/container/data_stream.h>
 #include <bakatools/string/format.h>
-#include <bakatools/logging/log.h>
 #include "json_node.h"
 
 namespace Bk::Json 

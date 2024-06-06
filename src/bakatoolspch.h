@@ -20,3 +20,4 @@
 #include <chrono>
 
 #include <bakatools/base.h>
+#include <bakatools/logging/log.h>

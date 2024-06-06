@@ -76,7 +76,7 @@ namespace Bk::Json
                     }
                 }
             }
-            catch(std::logic_error e)
+            catch(std::logic_error& e)
             {
                 BK_INFO(e.what());
                 auto node = std::shared_ptr<Json::Node>();

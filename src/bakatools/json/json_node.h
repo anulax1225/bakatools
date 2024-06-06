@@ -39,7 +39,7 @@ namespace Bk::Json
             void set_null();
             bool is_null();
 
-            std::string to_string(int indent  = 3);
+            std::string to_string(int indent = 0);
 
         private:
             union Values {

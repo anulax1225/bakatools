@@ -8,6 +8,7 @@ project "bakatools"
     targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
+    --buildoptions { "-Wall", "-Wextra" }
     includedirs 
     {
         "%{IncludeDirs.spdlog}",
