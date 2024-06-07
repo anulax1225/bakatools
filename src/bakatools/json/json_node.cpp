@@ -1,10 +1,12 @@
 #include "json_node.h"
 namespace Bk::Json 
 {
-    std::string Node::to_string(int indent) {
+    std::string Node::to_string(int indent) 
+    {
         std::string space_string = std::string(indent, ' ');
         std::string output_string = "";
-        switch (type) {
+        switch (type) 
+        {
             case Type::STRING: 
             {
                 output_string += '"' + *values.s + '"';        
@@ -27,15 +29,13 @@ namespace Bk::Json
             }
             case Type::LIST: 
             {
-                output_string += "\n" + space_string + "[\n";;
-                for (int i = 0; i < (*values.list).size() - 1; i++) 
+                output_string += space_string + "[\n";
+                for (int i = 0; i < (*values.list).size(); i++) 
                 {
                     output_string += get_list()[i]->to_string(indent + 4);
-                    if (i < (*values.list).size() - 2) 
+                    if (i < (*values.list).size() - 1) 
                     {
                         output_string += ",\n";
-                    } else {
-                        break;
                     }
                 }
                 output_string += "\n"  + space_string + "]";
@@ -67,6 +67,13 @@ namespace Bk::Json
         type = Type::OBJECT;
     }
 
+    Object* Node::get_p_object()
+    {
+        if (type == Type::OBJECT) 
+            return values.object;
+        throw std::logic_error("Improper return");
+    }
+
     Object Node::get_object()
     {
         if (type == Type::OBJECT) 
@@ -80,6 +87,13 @@ namespace Bk::Json
         type = Type::LIST;
     }
 
+    List* Node::get_p_list()
+    {
+        if (type == Type::LIST) 
+            return values.list;
+        throw std::logic_error("Improper return");
+    }
+
     List Node::get_list()
     {
         if (type == Type::LIST) 
@@ -91,6 +105,13 @@ namespace Bk::Json
     {
         values.s = str;
         type = Type::STRING;
+    }
+
+    std::string* Node::get_p_string()
+    {
+        if (type == Type::STRING) 
+            return values.s;
+        throw std::logic_error("Improper return");
     }
 
     std::string Node::get_string()
@@ -123,6 +144,19 @@ namespace Bk::Json
     {
         if (type == Type::NUMBER) 
             return values.fValue;
+        throw std::logic_error("Improper return");
+    }
+
+    void Node::set_int(int value)
+    {
+        values.fValue = value;
+        type = Type::NUMBER;
+    }
+
+    int Node::get_int()
+    {
+        if (type == Type::NUMBER) 
+            return (int)values.fValue;
         throw std::logic_error("Improper return");
     }
 

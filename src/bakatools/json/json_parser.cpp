@@ -16,7 +16,7 @@ namespace Bk::Json
     Parser::Parser(const char* str, int length)
     {
         Type::DataStream data;
-        data.payload = std::vector<char>(str, str + length);
+        data.push<char>(str, length);
         data.reverse();
         lexer = Lexer(data);
     }
@@ -41,36 +41,31 @@ namespace Bk::Json
                     case TokenType::CURLY_OPEN: 
                     {
                         std::shared_ptr<Json::Node> parsed_object = parse_object();
-                        if (!root) {
-                            root = parsed_object;
-                        }
+                        root = parsed_object;
                         break;
                     }
-                    case TokenType::ARRAY_OPEN: {
+                    case TokenType::ARRAY_OPEN: 
+                    {
                         std::shared_ptr<Json::Node> parsed_list = parse_list();
-                        if (!root) {
-                            root = parsed_list;
-                        }
+                        root = parsed_list;
                         break;
                     }
 
-                    case TokenType::STRING: {
-                        
+                    case TokenType::STRING: 
+                    {
                         std::shared_ptr<Json::Node> parsed_string = parse_string();
-                        if (!root) {
-                            root = parsed_string;
-                        }
+                        root = parsed_string;
                         break;
                     }
-                    case TokenType::NUMBER: {
+                    case TokenType::NUMBER: 
+                    {
                         std::shared_ptr<Json::Node> parsed_number = parse_number();
-                        if (!root) {
-                            root = parsed_number;
-                        }
+                        root = parsed_number;
                         break;
                     }
                     
-                    case TokenType::BOOLEAN: {
+                    case TokenType::BOOLEAN: 
+                    {
                         std::shared_ptr<Json::Node> parsed_boolean = parse_boolean();
                         break;
                     }
@@ -91,7 +86,7 @@ namespace Bk::Json
     std::shared_ptr<Json::Node> Parser::parse_list() 
     {
         std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
-        Json::List *list = new Json::List();
+        Json::List* list = new Json::List();
         bool has_completed = false;
         Token next_token;
         while (!has_completed) {
@@ -104,6 +99,10 @@ namespace Bk::Json
                 next_token = lexer.get_token();
                 if (next_token.type == TokenType::COLON || next_token.type == TokenType::COMMA)
                     continue;
+                if (next_token.type == TokenType::ARRAY_CLOSE) {
+                    has_completed = true;
+                    break;
+                }
                 std::shared_ptr<Json::Node> node;
                 switch (next_token.type) 
                 {
@@ -138,9 +137,6 @@ namespace Bk::Json
                     }
                 }
                 list->push_back(node);
-                if (next_token.type == TokenType::ARRAY_CLOSE) {
-                    has_completed = true;
-                }
             }
         }
         node->set_list(list);

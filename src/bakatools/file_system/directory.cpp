@@ -1,6 +1,11 @@
 #include "directory.h"
 
 namespace Bk {
+    bool Directory::create()
+    {
+        return std::filesystem::create_directory(ent.path());
+    }
+
     std::string Directory::current()
     {
         return std::filesystem::current_path();

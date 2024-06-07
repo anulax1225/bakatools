@@ -5,8 +5,8 @@
 
 namespace Bk::Json
 {
-    class Parser {
-        Type::DataStream data;
+    class Parser 
+    {
         std::shared_ptr<Json::Node> root;
         std::unique_ptr<Json::Node> current;
         Lexer lexer;

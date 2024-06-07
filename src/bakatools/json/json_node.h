@@ -22,12 +22,15 @@ namespace Bk::Json
                 NULL_TYPE
             }; 
             void set_object(Object* object);
+            Object* get_p_object();
             Object get_object();
 
             void set_list(List* list);
+            List* get_p_list();
             List get_list();
 
             void set_string(std::string* str);
+            std::string* get_p_string();
             std::string get_string();
 
             void set_bool(bool value);
@@ -35,6 +38,9 @@ namespace Bk::Json
 
             void set_float(float value);
             float get_float();
+
+            void set_int(int value);
+            int get_int();
 
             void set_null();
             bool is_null();
