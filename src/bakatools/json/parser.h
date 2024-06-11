@@ -1,7 +1,7 @@
 #pragma once
 
 #include <bakatoolspch.h>
-#include "json_lexer.h"
+#include "lexer.h"
 
 namespace Bk::Json
 {

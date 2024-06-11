@@ -13,9 +13,13 @@
     #include <bakatools/logging/assert.h>
 #endif
 #ifdef BKMOD_JSON
-    #include <bakatools/json/json_parser.h>
-    #include <bakatools/json/json_lexer.h>
-    #include <bakatools/json/json_node.h>
+    #include <bakatools/json/fs_manager.h>
+    #include <bakatools/json/parser.h>
+    #include <bakatools/json/lexer.h>
+    #include <bakatools/json/node.h>
+    #define BKMOD_CONTAINER
+    #define BKMOD_STRING
+    #define BKMOD_FILESYSTEM
 #endif
 #ifdef BKMOD_STRING
     #include <bakatools/string/string_tools.h>
