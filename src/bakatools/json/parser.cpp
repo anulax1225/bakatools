@@ -32,7 +32,9 @@ namespace Bk::Json
     Pointer Parser::parse() 
     {
         Token token;
+        BK_INFO("LALA");
         while (lexer.has_more_tokens()) {
+            BK_INFO("LALA");
             try 
             {
                 token = lexer.get_token();
@@ -73,7 +75,7 @@ namespace Bk::Json
             }
             catch(std::logic_error& e)
             {
-                BK_INFO(e.what());
+                BK_WARNING(e.what());
                 auto node = Pointer();
                 node->set_null();
                 root = node;

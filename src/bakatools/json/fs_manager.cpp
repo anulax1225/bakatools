@@ -31,6 +31,7 @@ namespace Bk::Json
 
     void FsManager::config_init(int page_size)
     {
+        BK_INFO("CACA");
         auto dir = Directory(path);
         std::string s_config = "\n"
         "{\n"
@@ -38,16 +39,21 @@ namespace Bk::Json
         "   \"id_count\": 0,\n"
         "   \"page_size\": " + std::to_string(page_size) + "\n" 
         "}";
+
+        BK_INFO(s_config);
         config = Parser(s_config).parse(); 
+        BK_INFO("ff");
         write_config();
     }
 
     void FsManager::init(bool force, int page_size)
     {
+
         auto dir = Directory(path);
         if (dir.exists() && force) dir = dir.remove();
         if (!dir.exists())
         {
+            BK_INFO("CACA");
             Directory::create(dir.path());
             config_init(page_size);
         } 
@@ -64,7 +70,6 @@ namespace Bk::Json
     void FsManager::set_config(Object* object) 
     { 
         config->set_object(object);
-
         write_config();
     }
 

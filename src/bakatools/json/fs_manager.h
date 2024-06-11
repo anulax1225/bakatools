@@ -1,4 +1,6 @@
 #include <bakatoolspch.h>
+#include <bakatools/file_system/directory.h>
+#include <bakatools/file_system/file.h>
 #include "parser.h"
 
 namespace Bk::Json
