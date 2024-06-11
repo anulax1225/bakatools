@@ -41,7 +41,6 @@ namespace Bk
             
             bool move(std::string path);
             bool rename(std::string name);
-            virtual int remove() { return (int)false; }
             virtual void copy(std::string path, CopyOption opt) {}
 
 

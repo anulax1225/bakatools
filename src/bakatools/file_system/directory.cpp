@@ -1,9 +1,10 @@
 #include "directory.h"
 
 namespace Bk {
-    bool Directory::create()
+    Directory Directory::create(std::string path)
     {
-        return std::filesystem::create_directory(ent.path());
+        std::filesystem::create_directory(path);
+        return Directory(path);
     }
 
     std::string Directory::current()
@@ -11,9 +12,10 @@ namespace Bk {
         return std::filesystem::current_path();
     }
 
-    int Directory::remove()
+    Directory Directory::remove()
     {
-        return std::filesystem::remove_all(ent.path());
+        std::filesystem::remove_all(ent.path());
+        return Directory(path());
     }
 
     void Directory::copy(std::string path, CopyOption opt)

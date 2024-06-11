@@ -17,7 +17,7 @@ namespace Bk {
 
             virtual ~File() {}
 
-            int remove() override;
+            int remove();
             void copy(std::string path, CopyOption opt = CopyOption::overwrite_existing) override;
 
             Type::DataStream read(int size);

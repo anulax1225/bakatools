@@ -6,8 +6,9 @@ namespace Bk::Json
 {
     class Node;
     
-    using Object = std::map<std::string, std::shared_ptr<Node>>;
-    using List = std::vector<std::shared_ptr<Node>>;
+    using Pointer = std::shared_ptr<Node>;
+    using Object = std::map<std::string, Pointer>;
+    using List = std::vector<Pointer>;
 
     class Node 
     {

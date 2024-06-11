@@ -29,7 +29,7 @@ namespace Bk::Json
         lexer = Lexer(data);
     }
 
-    std::shared_ptr<Json::Node> Parser::parse() 
+    Pointer Parser::parse() 
     {
         Token token;
         while (lexer.has_more_tokens()) {
@@ -40,33 +40,33 @@ namespace Bk::Json
                 {
                     case TokenType::CURLY_OPEN: 
                     {
-                        std::shared_ptr<Json::Node> parsed_object = parse_object();
+                        Pointer parsed_object = parse_object();
                         root = parsed_object;
                         break;
                     }
                     case TokenType::ARRAY_OPEN: 
                     {
-                        std::shared_ptr<Json::Node> parsed_list = parse_list();
+                        Pointer parsed_list = parse_list();
                         root = parsed_list;
                         break;
                     }
 
                     case TokenType::STRING: 
                     {
-                        std::shared_ptr<Json::Node> parsed_string = parse_string();
+                        Pointer parsed_string = parse_string();
                         root = parsed_string;
                         break;
                     }
                     case TokenType::NUMBER: 
                     {
-                        std::shared_ptr<Json::Node> parsed_number = parse_number();
+                        Pointer parsed_number = parse_number();
                         root = parsed_number;
                         break;
                     }
                     
                     case TokenType::BOOLEAN: 
                     {
-                        std::shared_ptr<Json::Node> parsed_boolean = parse_boolean();
+                        Pointer parsed_boolean = parse_boolean();
                         break;
                     }
                 }
@@ -74,7 +74,7 @@ namespace Bk::Json
             catch(std::logic_error& e)
             {
                 BK_INFO(e.what());
-                auto node = std::shared_ptr<Json::Node>();
+                auto node = Pointer();
                 node->set_null();
                 root = node;
                 break;
@@ -83,9 +83,9 @@ namespace Bk::Json
         return root;
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_list() 
+    Pointer Parser::parse_list() 
     {
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Json::List* list = new Json::List();
         bool has_completed = false;
         Token next_token;
@@ -103,7 +103,7 @@ namespace Bk::Json
                     has_completed = true;
                     break;
                 }
-                std::shared_ptr<Json::Node> node;
+                Pointer node;
                 switch (next_token.type) 
                 {
                     case TokenType::ARRAY_OPEN: 
@@ -143,10 +143,10 @@ namespace Bk::Json
         return node;
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_object() 
+    Pointer Parser::parse_object() 
     {
         std::string key = "";
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Json::Object *key_object_map = new Json::Object();
         bool has_completed = false;
         bool no_key = true;
@@ -171,7 +171,7 @@ namespace Bk::Json
                 next_token = lexer.get_token();
                 if (next_token.type == TokenType::COLON || next_token.type == TokenType::COMMA)
                     continue;
-                std::shared_ptr<Json::Node> node;
+                Pointer node;
                 switch (next_token.type) 
                 {
                     case TokenType::STRING: 
@@ -223,36 +223,36 @@ namespace Bk::Json
         return node;    
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_string() 
+    Pointer Parser::parse_string() 
     {
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Token token = lexer.roll_back_token();
         std::string *sValue = new std::string(token.value);
         node->set_string(sValue);
         return node;
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_number() 
+    Pointer Parser::parse_number() 
     {
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Token token = lexer.roll_back_token();
         float fValue = std::stof(token.value);
         node->set_float(fValue);
         return node;
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_boolean() 
+    Pointer Parser::parse_boolean() 
     {
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Token token = lexer.roll_back_token();
         bool bValue = token.value == "True" ? true : false;
         node->set_bool(bValue);
         return node;
     }
 
-    std::shared_ptr<Json::Node> Parser::parse_null() 
+    Pointer Parser::parse_null() 
     {
-        std::shared_ptr<Json::Node> node = std::make_shared<Json::Node>();
+        Pointer node = Pointer();
         Token token = lexer.roll_back_token();
         node->set_null();
         return node;

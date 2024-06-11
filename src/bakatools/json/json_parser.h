@@ -7,16 +7,16 @@ namespace Bk::Json
 {
     class Parser 
     {
-        std::shared_ptr<Json::Node> root;
+        Pointer root;
         std::unique_ptr<Json::Node> current;
         Lexer lexer;
         
-        std::shared_ptr<Json::Node> parse_object();
-        std::shared_ptr<Json::Node> parse_string();
-        std::shared_ptr<Json::Node> parse_number();
-        std::shared_ptr<Json::Node> parse_list();
-        std::shared_ptr<Json::Node> parse_boolean();
-        std::shared_ptr<Json::Node> parse_null();
+        Pointer parse_object();
+        Pointer parse_string();
+        Pointer parse_number();
+        Pointer parse_list();
+        Pointer parse_boolean();
+        Pointer parse_null();
 
         public:
             Parser(const Type::DataStream data)
@@ -25,6 +25,6 @@ namespace Bk::Json
             Parser(const char* data, int length);
             Parser(const std::string& str);
 
-            std::shared_ptr<Json::Node> parse();
+            Pointer parse();
     };
 }

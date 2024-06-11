@@ -15,8 +15,8 @@ namespace Bk {
 
             virtual ~Directory() {}
 
-            bool create();
-            int remove() override;
+            static Directory create(std::string path);
+            Directory remove();
             void copy(std::string path, CopyOption opt = CopyOption::recursive) override;
 
             std::vector<DirEntry> entries();
