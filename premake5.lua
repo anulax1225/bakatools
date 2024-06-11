@@ -35,7 +35,7 @@ project "bakatools"
         }
     
     filter "configurations:Debug"
-        buildoptions { "-Wall", "-Wextra" }
+        --buildoptions { "-Wall", "-Wextra" }
         defines 
         { 
             "BK_DEBUG",
