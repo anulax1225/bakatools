@@ -7,7 +7,7 @@ namespace Bk::Json
     class Node;
     
     using Pointer = std::shared_ptr<Node>;
-    using Object = std::unordered_map<std::string, Pointer>;
+    using Object = std::map<std::string, Pointer>;
     using List = std::vector<Pointer>;
 
     class Node 

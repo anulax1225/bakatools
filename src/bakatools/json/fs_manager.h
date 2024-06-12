@@ -16,6 +16,7 @@ namespace Bk::Json
             void init(bool force = false, int page_size = 100);
             void config_init(int page_size);
             bool exists() { return File(path + "/collection.json").exists(); }
+            void erase() { Directory(path).remove(); }
 
             void set_config(Object* object);
             void write(File file, Pointer& node);
@@ -26,7 +27,8 @@ namespace Bk::Json
 
             int insert(Object* object);
             bool update(Object* object);
-            void remove(int id);
+            bool remove(int id);
             Pointer findby_id(int id);
+            Pointer find_all();
     };
 }

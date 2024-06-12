@@ -3,7 +3,7 @@
 namespace Bk {
     Directory Directory::create(std::string path)
     {
-        std::filesystem::create_directory(path);
+        std::filesystem::create_directories(path);
         return Directory(path);
     }
 
