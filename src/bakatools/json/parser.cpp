@@ -79,7 +79,7 @@ namespace Bk::Json
             }
             catch(std::logic_error& e)
             {
-                BK_WARNING(e.what());
+                BK_TRACE(e.what());
                 auto node = Pointer();
                 node->set_null();
                 root = node;

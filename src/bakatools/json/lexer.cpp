@@ -24,14 +24,8 @@ namespace Bk::Json
         while ((c == ' ' || c == '\n'))
         {
             c = get_next_char(); // check
-            if ((c == ' ' || c == '\n') && !data.size())
-            {
-                throw std::logic_error("Ran out of tokens");
-            }
-            else if (!data.size())
-            {
-                return c;
-            }
+            if ((c == ' ' || c == '\n') && !data.size()) break;
+            else if (!data.size()) return c;
         }
         return c;
     }

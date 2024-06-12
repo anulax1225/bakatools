@@ -85,7 +85,7 @@ namespace Bk::Json
         }
     }
 
-    void FsManager::insert(Object* object)
+    int FsManager::insert(Object* object)
     {
         if (!config->is_null())
         {
@@ -113,32 +113,28 @@ namespace Bk::Json
             }
             (*conf_obj)["id_count"]->set_float((*conf_obj)["id_count"]->get_int() + 1);
             set_config(conf_obj);
+            return (*object)["id"]->get_int();
         }
+        return -1;
     }
 
-    void FsManager::update(Object* object)
+    bool FsManager::update(Object* object)
     {
-        if (object->find("id") != object->end())
+        if (Json::as_key("id", *object))
         {
             int id = (*object)["id"]->get_int();
             auto f_list = File(Tools::string_format("%s/%d.json", path, get_page(id)));
             if (f_list.exists())
             {
                 auto ls = Parser(f_list).parse();
-                for (int i = 0; i < ls->get_list().size(); i++)
-                {
-                    auto node = ls->get_p_list()->at(i);
-                    if (node->get_object().find("id") != node->get_object().end())
-                    {
-                        if (node->get_object()["id"]->get_int() == id)
-                        {
-                            ls->get_p_list()->at(i)->set_object(object);
-                        }
-                    }
-                }
+                int i = id - get_page(id) * config->get_object()["page_size"]->get_int();
+                auto node = ls->get_p_list()->at(i);
+                ls->get_p_list()->at(i)->set_object(object);
                 write(f_list, ls);
+                return true;
             }
-        }
+        } 
+        return false;
     }
 
     void FsManager::remove(int id)
@@ -163,25 +159,23 @@ namespace Bk::Json
         }
     }
 
-    Object FsManager::findby_id(int id)
+    Pointer FsManager::findby_id(int id)
     {
-        auto f_path = Tools::string_format("%s/%d.json", path, get_page(id));
-        auto f_list = File(f_path);
-        if (f_list.exists())
+        if (!config->is_null()) 
         {
-            auto ls = Parser(f_list).parse();
-            for (int i = 0; i < ls->get_list().size(); i++)
+            auto f_path = Tools::string_format("%s/%d.json", path, get_page(id));
+            auto f_list = File(f_path);
+            if (f_list.exists())
             {
+                auto ls = Parser(f_list).parse();
+                int i = id - get_page(id) * config->get_object()["page_size"]->get_int();
                 auto node = ls->get_p_list()->at(i);
-                if (node->get_object().find("id") != node->get_object().end())
-                {
-                    if (node->get_object()["id"]->get_int() == id)
-                    {
-                        return node->get_object();
-                    }
-                }
+                auto node_id = Json::find_key("id", node->get_object());
+                if (!node_id->is_null() && node_id->is_type(Node::Type::NUMBER) && node_id->get_int() == id) return node;
             }
         }
-        return Object();
+        Pointer node(new Node);
+        node->set_null();
+        return node;
     }
 }

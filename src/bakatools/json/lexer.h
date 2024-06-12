@@ -25,7 +25,7 @@ namespace Bk::Json
     struct Token
     {
         std::string value;
-        TokenType type;
+        TokenType type = TokenType::NULL_TYPE;
         
         std::string to_string();
     };

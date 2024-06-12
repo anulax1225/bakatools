@@ -2,6 +2,7 @@
 #include <bakatools/file_system/directory.h>
 #include <bakatools/file_system/file.h>
 #include "parser.h"
+#include "tools.h"
 
 namespace Bk::Json
 {
@@ -21,10 +22,11 @@ namespace Bk::Json
             void write_config();
             Object get_config() { return config->get_object(); }
             int get_page(float id) { return (int)(id/100.0f); }
+            int get_page(int id) { return (int)(id/100.0f); }
 
-            void insert(Object* object);
-            void update(Object* object);
+            int insert(Object* object);
+            bool update(Object* object);
             void remove(int id);
-            Object findby_id(int id);
+            Pointer findby_id(int id);
     };
 }

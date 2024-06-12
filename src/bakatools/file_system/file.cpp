@@ -19,6 +19,7 @@ namespace Bk {
             std::ifstream ifrm(path(), std::ios::binary);
             data.resize(size);
             ifrm.read(data.data(), data.size());
+            ifrm.close();
             return Type::DataStream(data);
         }
         return Type::DataStream();
@@ -29,6 +30,7 @@ namespace Bk {
         std::ofstream ofrm(ent.path(), std::ios::binary);
         if (!ofrm) return false;
         ofrm.write(stream.payload.data(), stream.payload.size());
+        ofrm.close();
         return true;
     }
 }

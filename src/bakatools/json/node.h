@@ -7,7 +7,7 @@ namespace Bk::Json
     class Node;
     
     using Pointer = std::shared_ptr<Node>;
-    using Object = std::map<std::string, Pointer>;
+    using Object = std::unordered_map<std::string, Pointer>;
     using List = std::vector<Pointer>;
 
     class Node 
@@ -22,6 +22,10 @@ namespace Bk::Json
                 BOOLEAN, 
                 NULL_TYPE
             }; 
+    
+            Type get_type() { return type; }
+            bool is_type(Type type) { return type == this->type; }
+
             void set_object(Object* object);
             Object* get_p_object();
             Object get_object();

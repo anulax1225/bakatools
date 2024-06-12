@@ -71,14 +71,14 @@ namespace Bk::Json
     {
         if (type == Type::OBJECT) 
             return values.object;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not an object");
     }
 
     Object Node::get_object()
     {
         if (type == Type::OBJECT) 
             return *values.object;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not an object");
     }
 
     void Node::set_list(List* list)
@@ -91,14 +91,14 @@ namespace Bk::Json
     {
         if (type == Type::LIST) 
             return values.list;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a list");
     }
 
     List Node::get_list()
     {
         if (type == Type::LIST) 
             return *values.list;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a list");
     }
 
     void Node::set_string(std::string* str)
@@ -111,14 +111,14 @@ namespace Bk::Json
     {
         if (type == Type::STRING) 
             return values.s;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a string");
     }
 
     std::string Node::get_string()
     {
         if (type == Type::STRING) 
             return *values.s;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a string");
     }
 
     void Node::set_bool(bool value)
@@ -131,7 +131,7 @@ namespace Bk::Json
     {
         if (type == Type::BOOLEAN) 
             return values.bValue;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a boolean");
     }
 
     void Node::set_float(float value)
@@ -144,7 +144,7 @@ namespace Bk::Json
     {
         if (type == Type::NUMBER) 
             return values.fValue;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a number");
     }
 
     void Node::set_int(int value)
@@ -157,7 +157,7 @@ namespace Bk::Json
     {
         if (type == Type::NUMBER) 
             return (int)values.fValue;
-        throw std::logic_error("Improper return");
+        throw std::logic_error("Json value not a number");
     }
 
     void Node::set_null()
