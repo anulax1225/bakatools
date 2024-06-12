@@ -57,6 +57,6 @@ namespace Bk::Json
                 bool bValue;
             };
             Values values;
-            Type type;
+            Type type = Type::NULL_TYPE;
     };
 }

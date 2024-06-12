@@ -4,6 +4,8 @@ namespace Bk::Json
 {
     Parser::Parser(File& file)
     {
+        root = Pointer(new Node());
+        root->set_null();
         Type::DataStream data;
         if (file.exists())
         {
@@ -15,6 +17,8 @@ namespace Bk::Json
 
     Parser::Parser(const char* str, int length)
     {
+        root = Pointer(new Node());
+        root->set_null();
         Type::DataStream data;
         data.push<char>(str, length);
         data.reverse();
@@ -23,8 +27,10 @@ namespace Bk::Json
 
     Parser::Parser(const std::string& str)
     {
+        root = Pointer(new Node());
+        root->set_null();
         Type::DataStream data;
-        data.payload = std::vector<char>(str.c_str(), str.c_str() + str.length());
+        data.payload = std::vector<char>(str.begin(), str.end());
         data.reverse();
         lexer = Lexer(data);
     }
@@ -32,9 +38,7 @@ namespace Bk::Json
     Pointer Parser::parse() 
     {
         Token token;
-        BK_INFO("LALA");
         while (lexer.has_more_tokens()) {
-            BK_INFO("LALA");
             try 
             {
                 token = lexer.get_token();
@@ -87,7 +91,7 @@ namespace Bk::Json
 
     Pointer Parser::parse_list() 
     {
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Json::List* list = new Json::List();
         bool has_completed = false;
         Token next_token;
@@ -148,7 +152,7 @@ namespace Bk::Json
     Pointer Parser::parse_object() 
     {
         std::string key = "";
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Json::Object *key_object_map = new Json::Object();
         bool has_completed = false;
         bool no_key = true;
@@ -160,6 +164,7 @@ namespace Bk::Json
                 if (no_key)
                 {
                     next_token = lexer.get_token();
+
                     if (next_token.type == TokenType::CURLY_CLOSE) 
                     {
                         has_completed = true;
@@ -173,7 +178,6 @@ namespace Bk::Json
                 next_token = lexer.get_token();
                 if (next_token.type == TokenType::COLON || next_token.type == TokenType::COMMA)
                     continue;
-                Pointer node;
                 switch (next_token.type) 
                 {
                     case TokenType::STRING: 
@@ -189,7 +193,7 @@ namespace Bk::Json
                     case TokenType::NUMBER: 
                     {
                         (*key_object_map)[key] = parse_number();
-                    break;
+                        break;
                     }
                     case TokenType::CURLY_OPEN: 
                     {
@@ -227,7 +231,7 @@ namespace Bk::Json
 
     Pointer Parser::parse_string() 
     {
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Token token = lexer.roll_back_token();
         std::string *sValue = new std::string(token.value);
         node->set_string(sValue);
@@ -236,7 +240,7 @@ namespace Bk::Json
 
     Pointer Parser::parse_number() 
     {
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Token token = lexer.roll_back_token();
         float fValue = std::stof(token.value);
         node->set_float(fValue);
@@ -245,7 +249,7 @@ namespace Bk::Json
 
     Pointer Parser::parse_boolean() 
     {
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Token token = lexer.roll_back_token();
         bool bValue = token.value == "True" ? true : false;
         node->set_bool(bValue);
@@ -254,7 +258,7 @@ namespace Bk::Json
 
     Pointer Parser::parse_null() 
     {
-        Pointer node = Pointer();
+        Pointer node = Pointer(new Node());
         Token token = lexer.roll_back_token();
         node->set_null();
         return node;
