@@ -21,10 +21,10 @@ namespace Bk::Json
     char Lexer::get_without_white_space()
     {
         char c = ' ';
-        while ((c == ' ' || c == '\n'))
+        while (c == ' ' || c == '\n' || c == '\t' || c == '\r')
         {
             c = get_next_char(); // check
-            if ((c == ' ' || c == '\n') && !data.size()) break;
+            if ((c == ' ' || c == '\n' || c == '\t' || c == '\r') && !data.size()) break;
             else if (!data.size()) return c;
         }
         return c;
