@@ -1,6 +1,28 @@
 #include "node.h"
 namespace Bk::Json 
 {
+    Node::~Node()
+    {
+        switch(type)
+        {
+            case Type::OBJECT:
+            {
+                delete values.object;
+                break;
+            }
+            case Type::LIST:
+            {
+                delete values.list;
+                break;
+            }
+            case Type::STRING:
+            {
+                delete values.s;
+                break;
+            }
+        }
+    } 
+    
     std::string Node::to_string(int indent) 
     {
         std::string space_string = std::string(indent, ' ');

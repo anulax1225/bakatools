@@ -21,7 +21,9 @@ namespace Bk::Json
                 NUMBER, 
                 BOOLEAN, 
                 NULL_TYPE
-            }; 
+            };
+
+            ~Node();
     
             Type get_type() { return type; }
             bool is_type(Type type) { return type == this->type; }

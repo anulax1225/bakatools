@@ -1,6 +1,6 @@
 #pragma once
 
-#include <bakatools.h>
+#include <bakatoolspch.h>
 #include "format.h"
 
 namespace Bk::Tools {
