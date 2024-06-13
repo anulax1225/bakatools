@@ -9,7 +9,7 @@ namespace Bk {
 
     std::string Directory::current()
     {
-        return std::filesystem::current_path();
+        return std::filesystem::current_path().string();
     }
 
     Directory Directory::remove()

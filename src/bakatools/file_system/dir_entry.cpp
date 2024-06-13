@@ -9,7 +9,7 @@ namespace Bk
 
     std::string DirEntry::absolute_path()
     {
-        return std::filesystem::absolute(ent.path());
+        return std::filesystem::absolute(ent.path()).string();
     }
 
     std::string DirEntry::relative_path()
@@ -19,7 +19,7 @@ namespace Bk
 
     std::string DirEntry::name()
     {
-        return ent.path().filename();
+        return ent.path().filename().string();
     }
 
     uintmax_t DirEntry::size()
