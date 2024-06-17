@@ -22,7 +22,7 @@ project "bakatools"
     }
 
     filter "system:windows"
-        buildoptions "/MDd"
+        buildoptions "/MT"
         defines
         {
             "BK_PLATFORM_WINDOWS"
@@ -33,6 +33,7 @@ project "bakatools"
         {
             "BK_PLATFORM_LINUX"
         }
+        
     
     filter "configurations:Debug"
         --buildoptions { "-Wall", "-Wextra" }
