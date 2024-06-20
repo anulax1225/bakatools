@@ -23,7 +23,7 @@ namespace Bk::Json
                 NULL_TYPE
             };
 
-            ~Node();
+            //~Node();
     
             Type get_type() { return type; }
             bool is_type(Type type) { return type == this->type; }
