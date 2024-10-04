@@ -27,7 +27,7 @@ namespace Bk::Json
         std::string value;
         TokenType type = TokenType::NULL_TYPE;
         
-        std::string to_string();
+        std::string ToString();
     };
 
     class Lexer

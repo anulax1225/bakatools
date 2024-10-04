@@ -29,7 +29,7 @@ namespace Bk::Json
         }
     }
 
-    void FsManager::config_init(int page_size)
+    void FsManager::config_Init(int page_size)
     {
         auto dir = Directory(path);
         std::string s_config = "\n"
@@ -42,7 +42,7 @@ namespace Bk::Json
         write_config();
     }
 
-    void FsManager::init(bool force, int page_size)
+    void FsManager::Init(bool force, int page_size)
     {
 
         auto dir = Directory(path);
@@ -50,14 +50,14 @@ namespace Bk::Json
         if (!dir.exists())
         {
             Directory::create(dir.path());
-            config_init(page_size);
+            config_Init(page_size);
         } 
         else 
         {
             File f_conf(path + "/collection.json");
             if (!f_conf.exists())
             {
-                config_init(page_size);
+                config_Init(page_size);
             } 
         }
     }
@@ -71,7 +71,7 @@ namespace Bk::Json
     void FsManager::write(File file, Pointer& node)
     {
         Type::DataStream data;
-        auto raw = node->to_string();
+        auto raw = node->ToString();
         data.push<char>(raw.c_str(), raw.length());
         file.write(data);
     }

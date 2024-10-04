@@ -13,8 +13,8 @@ namespace Bk::Json
         public:
             FsManager(std::string path);
 
-            void init(bool force = false, int page_size = 100);
-            void config_init(int page_size);
+            void Init(bool force = false, int page_size = 100);
+            void config_Init(int page_size);
             bool exists() { return File(path + "/collection.json").exists(); }
             void erase() { Directory(path).remove(); }
 

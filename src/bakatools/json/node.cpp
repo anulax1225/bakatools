@@ -1,29 +1,29 @@
 #include "node.h"
 namespace Bk::Json 
 {
-    // Node::~Node()
-    // {
-    //     switch(type)
-    //     {
-    //         case Type::OBJECT:
-    //         {
-    //             delete values.object;
-    //             break;
-    //         }
-    //         case Type::LIST:
-    //         {
-    //             delete values.list;
-    //             break;
-    //         }
-    //         case Type::STRING:
-    //         {
-    //             delete values.s;
-    //             break;
-    //         }
-    //     }
-    // } 
+    Node::~Node()
+    {
+        switch(type)
+        {
+            case Type::OBJECT:
+            {
+                delete values.object;
+                break;
+            }
+            case Type::LIST:
+            {
+                delete values.list;
+                break;
+            }
+            case Type::STRING:
+            {
+                delete values.s;
+                break;
+            }
+        }
+    } 
     
-    std::string Node::to_string(int indent) 
+    std::string Node::ToString(int indent) 
     {
         std::string space_string = std::string(indent, ' ');
         std::string output_string = "";
@@ -54,7 +54,7 @@ namespace Bk::Json
                 output_string += space_string + "[\n";
                 for (int i = 0; i < (*values.list).size(); i++) 
                 {
-                    output_string += get_list()[i]->to_string(indent + 4);
+                    output_string += get_list()[i]->ToString(indent + 4);
                     if (i < (*values.list).size() - 1) 
                     {
                         output_string += ",\n";
@@ -69,7 +69,7 @@ namespace Bk::Json
                 for (Object::iterator i = (*values.object).begin(); i != (*values.object).end(); i++) 
                 {
                     output_string += space_string + "    " + "\"" + i->first + "\"" + ": ";
-                    output_string += i->second->to_string(indent + 4);
+                    output_string += i->second->ToString(indent + 4);
                     Object::iterator next = i;
                     next++;
                     if ((next) != (*values.object).end()) 

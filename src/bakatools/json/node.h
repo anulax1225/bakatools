@@ -23,7 +23,7 @@ namespace Bk::Json
                 NULL_TYPE
             };
 
-            //~Node();
+            ~Node();
     
             Type get_type() { return type; }
             bool is_type(Type type) { return type == this->type; }
@@ -52,7 +52,7 @@ namespace Bk::Json
             void set_null();
             bool is_null();
 
-            std::string to_string(int indent = 0);
+            std::string ToString(int indent = 0);
 
         private:
             union Values {

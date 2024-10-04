@@ -2,7 +2,7 @@
 
 namespace Bk::Json 
 {
-    std::string Token::to_string()
+    std::string Token::ToString()
     {
         return Tools::string_format("%s %d", this->value, (int)this->type);
     }
