@@ -1,7 +1,7 @@
 #pragma once
 
+#include "bakatools/thread/task_delayer.h"
 #include <bakatoolspch.h>
-#include <bakatools/thread/task_timer.h>
 
 namespace Bk {
     enum class FileStat
@@ -14,7 +14,7 @@ namespace Bk {
     class FileWatcher
     {
         public:
-            FileWatcher(std::string path, TimeSpan<Millisecond> ts);
+            FileWatcher(std::string path, int ts = 1000);
             ~FileWatcher();
 
             void start(const std::function<void (std::string, FileStat)>& action);
@@ -24,6 +24,6 @@ namespace Bk {
         private:
             std::string target;
             std::unordered_map<std::string, std::filesystem::file_time_type> paths;
-            TaskTimer<Millisecond> ttm;
+            TaskDelayer ttm;
     };
 }

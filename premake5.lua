@@ -8,9 +8,6 @@ project "bakatools"
     targetdir("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
     objdir("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
-    pchheader "bakatoolspch.h"
-    pchsource "bakatoolspch.cpp"
-
     includedirs 
     {
         "%{IncludeDirs.spdlog}",

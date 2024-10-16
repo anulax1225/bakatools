@@ -7,14 +7,8 @@ This file contains the assert macros. CORE macros musn't be used by the applicat
 #include "log.h"
 #include <bakatools/string/format.h>
 
-#if defined(BK_PLATFORM_WINDOWS)
-    #define BK_STATIC_DEBUGBREAK() __debugbreak()
-#elif defined(BK_PLATFORM_LINUX)
-    #include <signal.h>
-    #define BK_STATIC_DEBUGBREAK() raise(SIGTRAP)
-#else 
-    #error "Plaform doesn't support debug yet"
-#endif
+#define BK_STATIC_DEBUGBREAK() exit(1)
+
 
 #define BK_STATIC_CORE_VAMSG_ASSERT(check, msg, ...) if(!(check)) { BK_STATIC_CORE_ERROR(Tools::format("Assertion [%s] failed at %s:%d\n\tError : %s", BK_STRINGIFY(check), __FILE__, __LINE__, msg), __VA_ARGS__); BK_STATIC_DEBUGBREAK(); }
 #define BK_STATIC_CORE_MSG_ASSERT(check, msg) if(!(check)) { BK_STATIC_CORE_ERROR("Assertion [{0}] failed at {1}:{2}\n\tError : {3}", BK_STRINGIFY(check), __FILE__, __LINE__, msg); BK_STATIC_DEBUGBREAK(); }

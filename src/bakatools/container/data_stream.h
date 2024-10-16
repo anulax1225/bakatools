@@ -1,12 +1,15 @@
 #pragma once
 
 #include <bakatoolspch.h>
+#include <initializer_list>
 
 namespace Bk::Type {
 	class DataStream 
 	{
 	public:
 		DataStream() = default;
+		DataStream(std::initializer_list<char> list)
+		: payload(list) {}
 		DataStream(std::vector<char> data)
 		: payload(data) {}
 
@@ -56,7 +59,7 @@ namespace Bk::Type {
 			std::memcpy(payload.data() + i, data.data(), sizeof(char) * data.size());
 			return true;
 		}
-	
+		
 		std::vector<char> payload;
 	};
 }

@@ -1,8 +1,7 @@
+#include "bakatools/json/node.h"
 #include <bakatoolspch.h>
 #include <bakatools/file_system/directory.h>
 #include <bakatools/file_system/file.h>
-#include "parser.h"
-#include "tools.h"
 
 namespace Bk::Json
 {

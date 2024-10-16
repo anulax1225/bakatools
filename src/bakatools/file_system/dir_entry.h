@@ -1,8 +1,8 @@
 #pragma once
 
 #include <bakatoolspch.h>
-#include <bakatools/time/time_span.h>
-#include <bakatools/time/time_point.h>
+#include <bits/chrono.h>
+#include <chrono>
 
 namespace Bk 
 {
@@ -34,7 +34,7 @@ namespace Bk
             std::string name();
 
             uintmax_t size();
-            TimePoint<FileClock, Second> last_write();
+            std::chrono::time_point<std::filesystem::__file_clock> last_write();
             bool exists();
             FilePerms perms();
             uintmax_t hard_links();

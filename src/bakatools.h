@@ -15,14 +15,11 @@
 
 #include "bakatools/container/data_stream.h"
 #include "bakatools/container/trie.h"
+#include "bakatools/container/types.h"
 
-#include "bakatools/thread/task_timer.h"
 #include "bakatools/thread/task_delayer.h"
 
 #include "bakatools/file_system/dir_entry.h" 
 #include "bakatools/file_system/directory.h"
 #include "bakatools/file_system/file.h"
 #include "bakatools/file_system/file_watcher.h"
-
-#include "bakatools/time/time_span.h"
-#include "bakatools/time/time_point.h"

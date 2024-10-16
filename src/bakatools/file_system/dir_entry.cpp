@@ -1,4 +1,6 @@
 #include "dir_entry.h"
+#include <bits/chrono.h>
+#include <chrono>
 
 namespace Bk 
 {
@@ -27,9 +29,9 @@ namespace Bk
         return ent.file_size();
     }
 
-    TimePoint<FileClock, Second> DirEntry::last_write()
+    std::chrono::time_point<std::filesystem::__file_clock> DirEntry::last_write()
     {
-        return TimePoint<FileClock, Second>(ent.last_write_time());
+        return ent.last_write_time();
     }
 
     bool DirEntry::exists()

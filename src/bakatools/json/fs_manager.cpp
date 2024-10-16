@@ -1,4 +1,6 @@
 #include "fs_manager.h"
+#include "bakatools/json/parser.h"
+#include "bakatools/json/tools.h"
 
 namespace Bk::Json
 {

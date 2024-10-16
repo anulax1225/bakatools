@@ -1,30 +1,44 @@
 #pragma once
 
-#include <bakatoolspch.h>
-#include <bakatools/time/time_span.h>
-#include <bakatools/time/time_point.h>
+#include <thread>
+#include <functional>
+#include <chrono>
+#include <ratio>
 
 namespace Bk {
-    template<typename P>
     class TaskDelayer 
     {
         public:
-            TaskDelayer(int n_ts, 
-            std::unique_ptr<std::function<void()>> action
-            ): ts(n_ts) 
+            TaskDelayer(int ts, bool repeat = false)
+            : ts(ts), repeat(repeat) {}
+            ~TaskDelayer() { stop(); }
+
+            void start(std::unique_ptr<std::function<void()>> action)
             {
+                if(running) stop();
+                running = true;
                 worker = std::thread([this](std::unique_ptr<std::function<void()>> action)
                 {
                     std::function<void()>& task = *action;
-                    std::this_thread::sleep_for(ts.interval);
-                    task();
+                    while(running && repeat)
+                    {
+                        std::this_thread::sleep_for(ts);
+                        task();
+                    }
                 }, std::move(action)); 
             }
 
-            ~TaskDelayer() { worker.join(); }
+            void stop()
+            {
+                if (!running) return;
+                running = false;
+                worker.join();
+            }
 
         private:
+            bool running = false;
+            bool repeat;
             std::thread worker;
-            TimeSpan<P> ts;
+            std::chrono::duration<int, std::milli> ts;
     };
 }

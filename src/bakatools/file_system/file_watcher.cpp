@@ -1,7 +1,7 @@
 #include "file_watcher.h"
 
 namespace Bk {
-    FileWatcher::FileWatcher(std::string path, TimeSpan<Millisecond> ts)
+    FileWatcher::FileWatcher(std::string path, int ts)
     : target(path), ttm(ts)
     {
         for (const std::filesystem::directory_entry& file : std::filesystem::recursive_directory_iterator(target))
