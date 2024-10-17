@@ -11,8 +11,9 @@ namespace Bk {
         if (exists()) std::filesystem::copy_file(ent.path(), path, opt);
     }
 
-    Type::DataStream File::read(int size)
+    Type::DataStream File::read(u64 size)
     {
+        size = size ? size : this->size();
         std::vector<char> data;
         if(exists())
         {

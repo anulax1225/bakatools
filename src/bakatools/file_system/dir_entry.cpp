@@ -24,7 +24,7 @@ namespace Bk
         return ent.path().filename().string();
     }
 
-    uintmax_t DirEntry::size()
+    u64 DirEntry::size()
     {
         return ent.file_size();
     }

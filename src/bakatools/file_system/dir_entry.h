@@ -1,6 +1,7 @@
 #pragma once
 
 #include <bakatoolspch.h>
+#include "bakatools/container/types.h"
 #include <bits/chrono.h>
 #include <chrono>
 
@@ -33,7 +34,7 @@ namespace Bk
             std::string relative_path();
             std::string name();
 
-            uintmax_t size();
+            u64 size();
             std::chrono::time_point<std::filesystem::__file_clock> last_write();
             bool exists();
             FilePerms perms();

@@ -2,6 +2,7 @@
 
 #include <bakatoolspch.h>
 #include <initializer_list>
+#include <string>
 
 namespace Bk::Type {
 	class DataStream 
@@ -12,6 +13,8 @@ namespace Bk::Type {
 		: payload(list) {}
 		DataStream(std::vector<char> data)
 		: payload(data) {}
+
+		operator std::string() { return std::string(payload.data(), payload.size()); }
 
 		int size() { return payload.size(); }
 
