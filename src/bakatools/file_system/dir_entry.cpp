@@ -1,5 +1,7 @@
 #include "dir_entry.h"
-#include <bits/chrono.h>
+#ifdef BK_PLATFORM_LINUX
+    #include <bits/chrono.h>
+#endif
 #include <chrono>
 
 namespace Bk 
@@ -29,7 +31,7 @@ namespace Bk
         return ent.file_size();
     }
 
-    std::chrono::time_point<std::filesystem::__file_clock> DirEntry::last_write()
+    std::filesystem::file_time_type DirEntry::last_write()
     {
         return ent.last_write_time();
     }

@@ -21,9 +21,9 @@ project "bakatools"
         "%{prj.location}/src/bakatoolspch.h",
         "%{prj.location}/src/bakatoolspch.cpp",
     }
-
+    
     filter "system:windows"
-        buildoptions "/MT"
+        buildoptions { "/MT", "/utf-8" }
         defines
         {
             "BK_PLATFORM_WINDOWS"
